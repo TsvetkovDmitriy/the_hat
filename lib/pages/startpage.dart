@@ -43,9 +43,11 @@ class _StartPageState extends State<StartPage>
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
         body: Container(
           width: width,
+          height: height,
           decoration: BoxDecoration(
               gradient: LinearGradient(
             begin: Alignment.topRight,
@@ -60,7 +62,7 @@ class _StartPageState extends State<StartPage>
             children: [
               Positioned(
                   right: -70,
-                  top: -30,
+                  top: -50,
                   child: Image.asset(
                     'assets/FirstScreen 3d.png',
                     fit: BoxFit.fill,
@@ -68,119 +70,125 @@ class _StartPageState extends State<StartPage>
                     height: 539,
                   )),
               Column(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 485,
+                    height: 455,
                   ),
-                  Text(
-                    "Шляпа",
-                    style: AppTextStyles.hed,
-                    // Theme.of(context).textTheme.bodyText1?.copyWith(
-                    //     color: Colors.white,
-                    //     fontSize: 28,
-                    //     fontWeight: FontWeight.w700,)
-                    // GoogleFonts.mon(
-                    //
-                    //
-                    //   color: Colors.white,
-                    //   fontSize: 28,
-                    //   fontWeight: FontWeight.w700,
-                    //   letterSpacing: 2,
-                    // ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Играйте со своими друзьями \nи близкими",
-                    style: AppTextStyles.nohed,
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  // Padding(
-                  //   padding: const EdgeInsets.all(30.0),
-                  //   child: AnimatedBuilder(
-                  //       animation: animation,
-                  //       child: Image.asset('assets/Hat.png'),
-                  //       builder: (BuildContext context, Widget? child) {
-                  //         return Transform.rotate(
-                  //           angle: animation.value, //* 2.0 * math.pi,
-                  //           child: child,
-                  //         );
-                  //       }),
-                  // ),                   Это анимация вращения
-                  ElevatedButton(
-                    onPressed: () {
-                      api.game = Game();
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => TeamsPage()));
-                    },
-                    child: const Text(
-                      'Играть',
-                      style: TextStyle(
-                          color: Color(0xFF019AF6),
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    style: ButtonStyle(
-                        elevation: MaterialStateProperty.all(0),
-                        backgroundColor:
-                            MaterialStateProperty.all(AppColors.bg),
-                        padding: MaterialStateProperty.all(EdgeInsets.only(
-                            left: 70, top: 15, right: 70, bottom: 15)),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            side: BorderSide(color: AppColors.bg)))),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => RulesPage()));
-                    },
-                    child: const Text('Правила игры',
-                        style: TextStyle(
-                            color: AppColors.bg,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500)),
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.transparent),
-                        padding: MaterialStateProperty.all(EdgeInsets.only(
-                            left: 46, top: 15, right: 46, bottom: 15)),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            side: BorderSide(color: AppColors.bg, width: 1))),
-                        shadowColor: MaterialStateProperty.all(Colors.grey),
-                        elevation: MaterialStateProperty.all(0)),
-                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "Шляпа",
+                          style: AppTextStyles.hed,
+                          // Theme.of(context).textTheme.bodyText1?.copyWith(
+                          //     color: Colors.white,
+                          //     fontSize: 28,
+                          //     fontWeight: FontWeight.w700,)
+                          // GoogleFonts.mon(
+                          //
+                          //
+                          //   color: Colors.white,
+                          //   fontSize: 28,
+                          //   fontWeight: FontWeight.w700,
+                          //   letterSpacing: 2,
+                          // ),
+                        ),
+                        // SizedBox(
+                        //   height: 0,
+                        // ),
+                        Text(
+                          "Играйте со своими друзьями \nи близкими",
+                          style: AppTextStyles.nohed,
+                          textAlign: TextAlign.center,
+                        ),
+                        // SizedBox(
+                        //   height: 10,
+                        // ),
+                        // Padding(
+                        //   padding: const EdgeInsets.all(30.0),
+                        //   child: AnimatedBuilder(
+                        //       animation: animation,
+                        //       child: Image.asset('assets/Hat.png'),
+                        //       builder: (BuildContext context, Widget? child) {
+                        //         return Transform.rotate(
+                        //           angle: animation.value, //* 2.0 * math.pi,
+                        //           child: child,
+                        //         );
+                        //       }),
+                        // ),                   Это анимация вращения
+                        ElevatedButton(
+                          onPressed: () {
+                            api.game = Game();
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context) => TeamsPage()));
+                          },
+                          child: const Text(
+                            'Играть',
+                            style: TextStyle(
+                                color: Color(0xFF019AF6),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          style: ButtonStyle(
+                              elevation: MaterialStateProperty.all(0),
+                              backgroundColor:
+                                  MaterialStateProperty.all(AppColors.bg),
+                              padding: MaterialStateProperty.all(EdgeInsets.only(
+                                  left: 70, top: 15, right: 70, bottom: 15)),
+                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  side: BorderSide(color: AppColors.bg)))),
+                        ),
+                        // SizedBox(
+                        //   height: 12,
+                        // ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context) => RulesPage()));
+                          },
+                          child: const Text('Правила игры',
+                              style: TextStyle(
+                                  color: AppColors.bg,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500)),
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.transparent),
+                              padding: MaterialStateProperty.all(EdgeInsets.only(
+                                  left: 46, top: 15, right: 46, bottom: 15)),
+                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  side: BorderSide(color: AppColors.bg, width: 1))),
+                              shadowColor: MaterialStateProperty.all(Colors.grey),
+                              elevation: MaterialStateProperty.all(0)),
+                        ),
 
-                  // ElevatedButton(
-                  //   onPressed: () {
-                  //     Navigator.of(context).push(
-                  //         MaterialPageRoute(builder: (context) => Settings()));
-                  //   },
-                  //   child: const Text('Настройки',
-                  //       style: TextStyle(
-                  //           color: Colors.black38,
-                  //           fontSize: 18,
-                  //           fontWeight: FontWeight.w600)),
-                  //   style: ButtonStyle(
-                  //       backgroundColor:
-                  //           MaterialStateProperty.all(Colors.blueGrey),
-                  //       padding: MaterialStateProperty.all(EdgeInsets.only(
-                  //           left: 44, top: 15, right: 44, bottom: 15)),
-                  //       shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  //           borderRadius: BorderRadius.circular(10),
-                  //           side: BorderSide(color: Colors.black38, width: 2))),
-                  //       shadowColor: MaterialStateProperty.all(Colors.grey),
-                  //       elevation: MaterialStateProperty.all(0)),
-                  // )
+                        // ElevatedButton(
+                        //   onPressed: () {
+                        //     Navigator.of(context).push(
+                        //         MaterialPageRoute(builder: (context) => Settings()));
+                        //   },
+                        //   child: const Text('Настройки',
+                        //       style: TextStyle(
+                        //           color: Colors.black38,
+                        //           fontSize: 18,
+                        //           fontWeight: FontWeight.w600)),
+                        //   style: ButtonStyle(
+                        //       backgroundColor:
+                        //           MaterialStateProperty.all(Colors.blueGrey),
+                        //       padding: MaterialStateProperty.all(EdgeInsets.only(
+                        //           left: 44, top: 15, right: 44, bottom: 15)),
+                        //       shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                        //           borderRadius: BorderRadius.circular(10),
+                        //           side: BorderSide(color: Colors.black38, width: 2))),
+                        //       shadowColor: MaterialStateProperty.all(Colors.grey),
+                        //       elevation: MaterialStateProperty.all(0)),
+                        // )
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ],

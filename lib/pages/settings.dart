@@ -17,7 +17,7 @@ class _SettingsState extends State<Settings> {
           centerTitle: true,),
         backgroundColor: AppColors.bg,
         body: Container (
-          child: Text ('\n'
+          child: const Text (
               '\n В РАЗРАБОТКЕ У СОЗДАТЕЛЯ :) '
               '\n   Настройки темы (светлая, тёмная, разноцветная)'
               '\n  Настройки времени раундов'
