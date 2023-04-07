@@ -48,10 +48,10 @@ class _StartPageState extends State<StartPage>
         body: Container(
           width: width,
           height: height,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
               Color(0xff51D3FE),
               Color(0xff019AF6),
@@ -71,7 +71,7 @@ class _StartPageState extends State<StartPage>
                   )),
               Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 455,
                   ),
                   Expanded(
@@ -123,6 +123,16 @@ class _StartPageState extends State<StartPage>
                             Navigator.of(context).push(
                                 MaterialPageRoute(builder: (context) => TeamsPage()));
                           },
+                          
+                          style: ButtonStyle(
+                              elevation: MaterialStateProperty.all(0),
+                              backgroundColor:
+                                  MaterialStateProperty.all(AppColors.bg),
+                              padding: MaterialStateProperty.all(const EdgeInsets.only(
+                                  left: 70, top: 15, right: 70, bottom: 15)),
+                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  side: const BorderSide(color: AppColors.bg)))),
                           child: const Text(
                             'Играть',
                             style: TextStyle(
@@ -130,15 +140,6 @@ class _StartPageState extends State<StartPage>
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500),
                           ),
-                          style: ButtonStyle(
-                              elevation: MaterialStateProperty.all(0),
-                              backgroundColor:
-                                  MaterialStateProperty.all(AppColors.bg),
-                              padding: MaterialStateProperty.all(EdgeInsets.only(
-                                  left: 70, top: 15, right: 70, bottom: 15)),
-                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  side: BorderSide(color: AppColors.bg)))),
                         ),
                         // SizedBox(
                         //   height: 12,
@@ -148,22 +149,24 @@ class _StartPageState extends State<StartPage>
                             Navigator.of(context).push(
                                 MaterialPageRoute(builder: (context) => RulesPage()));
                           },
+                          
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.transparent),
+                              padding: MaterialStateProperty.all(const EdgeInsets.only(
+                                  left: 46, top: 15, right: 46, bottom: 15)),
+                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  side: const BorderSide(color: AppColors.bg, width: 1))),
+                              shadowColor: MaterialStateProperty.all(Colors.grey),
+                              elevation: MaterialStateProperty.all(0)),
                           child: const Text('Правила игры',
                               style: TextStyle(
                                   color: AppColors.bg,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500)),
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.transparent),
-                              padding: MaterialStateProperty.all(EdgeInsets.only(
-                                  left: 46, top: 15, right: 46, bottom: 15)),
-                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  side: BorderSide(color: AppColors.bg, width: 1))),
-                              shadowColor: MaterialStateProperty.all(Colors.grey),
-                              elevation: MaterialStateProperty.all(0)),
                         ),
+                        
 
                         // ElevatedButton(
                         //   onPressed: () {
