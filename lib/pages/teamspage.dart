@@ -116,6 +116,7 @@ class _TeamsPageState extends State<TeamsPage> {
           child: Image.asset('assets/plus.png'), //
         ),
         appBar: AppBar(
+          leadingWidth: 70,
           //         iconTheme: IconThemeData(
           //   color: Colors.blue, //change your color here
           // ),

@@ -154,103 +154,115 @@ class _GamePageState extends State<GamePage> {
       });
     }
     return Scaffold(
-      backgroundColor: AppColors.bg,
-      body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _pageState == _PageStates.prestart
-                ? Text(
-                    "01-00",
-                    style: TextStyle(fontSize: 40, color: AppColors.bg),
-                  )
-                : CountdownTimer(
-                    controller: controller,
-                    widgetBuilder:
-                        (BuildContext context, CurrentRemainingTime? time) {
-                      if (time == null) {
+      // backgroundColor: AppColors.bg,
+      body: Container(
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xff019AF6),
+                Color(0xff51D3FE),
+              ],
+            )),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _pageState == _PageStates.prestart
+                  ? Text(
+                      "01-00",
+                      style: TextStyle(fontSize: 105, color: AppColors.bg, fontWeight: FontWeight.w400),
+                    )
+                  : CountdownTimer(
+                      controller: controller,
+                      widgetBuilder:
+                          (BuildContext context, CurrentRemainingTime? time) {
+                        if (time == null) {
+                          return Text(
+                            "00-00",
+                            style: TextStyle(
+                                fontSize: 105, color: AppColors.bg, fontWeight: FontWeight.w400),
+                          );
+                        }
                         return Text(
-                          "00-00",
-                          style: TextStyle(fontSize: 40, color: AppColors.bg),
+                          ' ${time.min ?? "00"} - ${time.sec} ',
+                          style: TextStyle(fontSize: 40, color: Colors.blue),
                         );
-                      }
-                      return Text(
-                        ' ${time.min ?? "00"} - ${time.sec} ',
-                        style: TextStyle(fontSize: 40, color: Colors.blue),
-                      );
-                    },
-                  ),
-            _pageState == _PageStates.finish
-                ?  Card(elevation: 20, child: Padding(
+                      },
+                    ),
+              _pageState == _PageStates.finish
+                  ?  Card(elevation: 20, child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(" Игра завершена \n Лучшая команда - $teamName \n Лучший игрок ${name}  ",),
+                  ))
+                  :  Card(
+                elevation: 20.0,
+                child: Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: Text(" Игра завершена \n Лучшая команда - $teamName \n Лучший игрок ${name}  ",),
-                ))
-                :  Card(
-              elevation: 20.0,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    _pageState == _PageStates.raundend
-                        ? Text("Промежуточные результаты")
-                        : Text("Команда - ${api.game.currentTry.team.name}"),
-                    _pageState == _PageStates.raundend
-                        ? SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.7,
-                            child: ListView(
-                              children: results,
-                            ))
-                        : Text(api.game.currentTry.player.name),
-                    _pageState == _PageStates.process
-                        ? Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              api.game.currentTry.currentWord,
-                              style: TextStyle(fontSize: 30),
-                            ),
-                          )
-                        : Container(),
-                    _pageState == _PageStates.end
-                        ? Text("Результаты:")
-                        : Container(),
-                    _pageState == _PageStates.end
-                        ? SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.7,
-                            child: ListView(
-                              children: results,
-                            ))
-                        : Container()
-                  ],
+                  child: Column(
+                    children: [
+                      _pageState == _PageStates.raundend
+                          ? Text("Промежуточные результаты")
+                          : Text("Команда - ${api.game.currentTry.team.name}"),
+                      _pageState == _PageStates.raundend
+                          ? SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.7,
+                              child: ListView(
+                                children: results,
+                              ))
+                          : Text(api.game.currentTry.player.name),
+                      _pageState == _PageStates.process
+                          ? Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                api.game.currentTry.currentWord,
+                                style: TextStyle(fontSize: 30),
+                              ),
+                            )
+                          : Container(),
+                      _pageState == _PageStates.end
+                          ? Text("Результаты:")
+                          : Container(),
+                      _pageState == _PageStates.end
+                          ? SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.7,
+                              child: ListView(
+                                children: results,
+                              ))
+                          : Container()
+                    ],
+                  ),
                 ),
               ),
-            ),
-            _pageState == _PageStates.prestart
-                ? ElevatedButton(
-                    onPressed: onStart, child: const Text("Начать"))
-                : Container(),
-            _pageState == _PageStates.process
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                          onPressed: onWordNoOK, child: const Text("Отложить")),
-                      ElevatedButton(
-                          onPressed: onWordOK, child: const Text("Угаданно"))
-                    ],
-                  )
-                : Container(),
-            _pageState == _PageStates.end
-                ? ElevatedButton(onPressed: onNext, child: const Text("Далее"))
-                : Container(),
-            _pageState == _PageStates.raundend
-                ? ElevatedButton(
-                    onPressed: nextRound, child: const Text("Следующий раунд"))
-                : Container(),
-            _pageState == _PageStates.finish
-                ? ElevatedButton(
-                onPressed: newGame, child: const Text("Новая игра"))
-                : Container(),
-          ]),
+              _pageState == _PageStates.prestart
+                  ? ElevatedButton(
+                      onPressed: onStart, child: const Text("Начать"))
+                  : Container(),
+              _pageState == _PageStates.process
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                            onPressed: onWordNoOK, child: const Text("Отложить")),
+                        ElevatedButton(
+                            onPressed: onWordOK, child: const Text("Угаданно"))
+                      ],
+                    )
+                  : Container(),
+              _pageState == _PageStates.end
+                  ? ElevatedButton(onPressed: onNext, child: const Text("Далее"))
+                  : Container(),
+              _pageState == _PageStates.raundend
+                  ? ElevatedButton(
+                      onPressed: nextRound, child: const Text("Следующий раунд"))
+                  : Container(),
+              _pageState == _PageStates.finish
+                  ? ElevatedButton(
+                  onPressed: newGame, child: const Text("Новая игра"))
+                  : Container(),
+            ]),
+      ),
     );
   }
 }
