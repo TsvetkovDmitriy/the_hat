@@ -28,4 +28,14 @@ class AppTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
+  static final blueButtom = GoogleFonts.montserrat(
+    color: AppColors.blueButton,
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+  );
+  static final timer = GoogleFonts.inter(
+    fontSize: 105,
+    color: AppColors.bg,
+    fontWeight: FontWeight.w400,
+  );
 }

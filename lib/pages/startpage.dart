@@ -62,7 +62,7 @@ class _StartPageState extends State<StartPage>
             children: [
               Positioned(
                   right: -70,
-                  top: -50,
+                  top: -30,
                   child: Image.asset(
                     'assets/FirstScreen 3d.png',
                     fit: BoxFit.fill,
@@ -72,7 +72,7 @@ class _StartPageState extends State<StartPage>
               Column(
                 children: [
                   const SizedBox(
-                    height: 455,
+                    height: 470,
                   ),
                   Expanded(
                     child: Column(
@@ -166,7 +166,9 @@ class _StartPageState extends State<StartPage>
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500)),
                         ),
-                        
+                        const SizedBox(
+                          height: 40,
+                        ),
 
                         // ElevatedButton(
                         //   onPressed: () {
