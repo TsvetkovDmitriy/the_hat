@@ -17,12 +17,7 @@ class StartPage extends StatefulWidget {
   State<StartPage> createState() => _StartPageState();
 }
 
-class _StartPageState extends State<StartPage>
-    with SingleTickerProviderStateMixin {
-  //TODO узнать у Кирилла что это!
-  @override
-  late AnimationController controller;
-  late Animation<double> animation;
+class _StartPageState extends State<StartPage> {
 
   void initState() {
     super.initState();

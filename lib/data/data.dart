@@ -1,9 +1,15 @@
-class Try {
-  Player player = Player();
-  Team team = Team();
-  List<String> okWord = [];
-  List<String> noOkWord = [];
-  String currentWord = '';
+class Game {
+  bool gameStarted = false;
+  bool roundStarted =false;
+  int currentRound = 0;
+  List<Team> teamList = [
+    Team(),
+    Team(name: "Команда 2")
+  ];
+  int currentTurn = 0;
+  Try currentTry = Try();
+  List<String> mainWordList = [];
+  List<String> currentRoundWordList = [];
 }
 
 class Team {
@@ -24,16 +30,10 @@ class Player {
   int personalScore = 0;
 }
 
-class Game {
-  bool gameStarted = false;
-  bool roundStarted =false;
-  int currentRound = 0;
-  List<Team> teamList = [
-    Team(),
-    Team(name: "Команда 2")
-  ];
-  int currentTurn = 0;
-  Try currentTry = Try();
-  List<String> mainWordList = [];
-  List<String> currentRoundWordList = [];
+class Try {
+  Player player = Player();
+  Team team = Team();
+  List<String> okWord = [];
+  List<String> noOkWord = [];
+  String currentWord = '';
 }
