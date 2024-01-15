@@ -14,7 +14,7 @@ class Game {
 
 class Team {
   Team ({this.name = "Команда 1"});
-  String name = 'Команда 1';
+  String name;
   int score = 0;
   List<Player> playersList = [
     Player(),
@@ -26,7 +26,7 @@ class Team {
 
 class Player {
   Player ({this.name = "Игрок 1"});
-  String name = "Игрок 1";
+  String name;
   int personalScore = 0;
 }
 

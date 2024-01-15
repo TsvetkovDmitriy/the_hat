@@ -75,7 +75,7 @@ class _TeamsPageState extends State<TeamsPage> {
                     });
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
-                      return PlayersPage();
+                      return const PlayersPage();
                     }));
                   },
                   style: ButtonStyle(

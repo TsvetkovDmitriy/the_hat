@@ -24,6 +24,7 @@ class _GamePageState extends State<GamePage> {
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 60;
   CountdownTimerController? controller;
   _PageStates _pageState = _PageStates.prestart;
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
   void onEnd() {
     print('onEnd');
@@ -32,8 +33,7 @@ class _GamePageState extends State<GamePage> {
   }
 
   void onStart() {
-    print("Количество слов в шляпе " +
-        api.game.currentRoundWordList.length.toString());
+    print("Количество слов в шляпе ${api.game.currentRoundWordList.length}");
     int time = api.game.currentRound == 3 ? (30) : 60;
     endTime = DateTime.now().millisecondsSinceEpoch + 1000 * time;
     // if (DateTime.now() == endTime)
@@ -119,11 +119,22 @@ class _GamePageState extends State<GamePage> {
 
   @override
   void initState() {
+    playNotificationSound();
     api.startGame();
     api.startRound();
     api.preStartTry();
     _pageState = _PageStates.prestart;
     super.initState();
+  }
+
+  // Функция для воспроизведения звука
+  Future<void> playNotificationSound() async {
+    print('BZZZZZZ');
+    // Загрузка аудио из ассетов
+    // final ByteData data = await rootBundle.load('assets/sound/notification.mp3');
+    // final List<int> bytes = data.buffer.asUint8List();
+    // await _audioPlayer.setAudioBytes(bytes);
+    await _audioPlayer.play(AssetSource('sounds/3sec.mp3'));
   }
 
   @override
@@ -264,7 +275,7 @@ class _GamePageState extends State<GamePage> {
                                               color: AppColors.bg,
                                               fontWeight: FontWeight.w500),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
                                         Text(
@@ -375,7 +386,8 @@ class _GamePageState extends State<GamePage> {
                               : Padding(
                                   padding: const EdgeInsets.only(top: 60),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       const Text(
                                         'игрок',
@@ -421,23 +433,23 @@ class _GamePageState extends State<GamePage> {
                     ? Column(
                         children: [
                           Container(
-                            width: width*0.9,
-                            height: height*0.21,
+                            width: width * 0.9,
+                            height: height * 0.21,
                             child:
-                              // FittedBox(
-                              //   fit: BoxFit.none,
-                              //   // padding: const EdgeInsets.only(top: 40.0),
-                              //   child:
+                                // FittedBox(
+                                //   fit: BoxFit.none,
+                                //   // padding: const EdgeInsets.only(top: 40.0),
+                                //   child:
                                 AutoSizeText(
-                                  api.game.currentTry.currentWord,
-                                  maxLines: 2,
-                                  // overflow: TextOverflow.visible,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                      fontSize: 52,
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColors.bg),
-                                ),
+                              api.game.currentTry.currentWord,
+                              maxLines: 2,
+                              // overflow: TextOverflow.visible,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 52,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.bg),
+                            ),
                             // ),
                           ),
                           const SizedBox(
@@ -524,7 +536,10 @@ class _GamePageState extends State<GamePage> {
                                   MaterialStateProperty.all(AppColors.bg),
                               padding: MaterialStateProperty.all(
                                   const EdgeInsets.only(
-                                      left: 80, top: 17, right: 80, bottom: 17)),
+                                      left: 80,
+                                      top: 17,
+                                      right: 80,
+                                      bottom: 17)),
                               shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15),
@@ -644,8 +659,8 @@ class _GamePageState extends State<GamePage> {
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15),
-                                    side:
-                                        const BorderSide(color: AppColors.bg)))),
+                                    side: const BorderSide(
+                                        color: AppColors.bg)))),
                         child: Text(
                           "Следующий раунд",
                           style: AppTextStyles.blueButtom,
@@ -664,8 +679,8 @@ class _GamePageState extends State<GamePage> {
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15),
-                                    side:
-                                        const BorderSide(color: AppColors.bg)))),
+                                    side: const BorderSide(
+                                        color: AppColors.bg)))),
                         child: Text(
                           "Новая игра",
                           style: AppTextStyles.blueButtom,
@@ -703,7 +718,7 @@ class ResultsButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              width: MediaQuery.of(context).size.width*0.73,
+              width: MediaQuery.of(context).size.width * 0.73,
               child: AutoSizeText(
                 text,
                 maxLines: 1,

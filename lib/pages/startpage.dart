@@ -116,7 +116,7 @@ class _StartPageState extends State<StartPage> {
                           onPressed: () {
                             api.game = Game();
                             Navigator.of(context).push(
-                                MaterialPageRoute(builder: (context) => TeamsPage()));
+                                MaterialPageRoute(builder: (context) => const TeamsPage()));
                           },
                           
                           style: ButtonStyle(
@@ -142,7 +142,7 @@ class _StartPageState extends State<StartPage> {
                         ElevatedButton(
                           onPressed: () {
                             Navigator.of(context).push(
-                                MaterialPageRoute(builder: (context) => RulesPage()));
+                                MaterialPageRoute(builder: (context) => const RulesPage()));
                           },
                           
                           style: ButtonStyle(
@@ -199,7 +199,7 @@ class _StartPageState extends State<StartPage> {
             elevation: 0,
             onPressed: () {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => Settings()));
+                  .push(MaterialPageRoute(builder: (context) => const Settings()));
             },
             child: Image.asset('assets/set.png')));
   }

@@ -6,6 +6,9 @@ import 'text_styles.dart';
 class AppThemeData {
   static final light = ThemeData(
     backgroundColor: AppColors.bg,
+    colorScheme: const ColorScheme.light(
+      background: AppColors.bg,
+    ),
 
     textTheme: TextTheme (headline1: AppTextStyles.h1),
   );
