@@ -190,6 +190,9 @@ class _WordsPageState extends State<WordsPage> {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                     child: TextField(
+                      cursorColor: AppColors.blue,
+                      cursorWidth: 1.5,
+                      maxLength: 64,
                       controller: listWordsController[index],
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(

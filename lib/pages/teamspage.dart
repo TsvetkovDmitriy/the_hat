@@ -99,6 +99,7 @@ class _TeamsPageState extends State<TeamsPage> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.transparent,
           highlightElevation: 0,
           elevation: 0,
           onPressed: () {

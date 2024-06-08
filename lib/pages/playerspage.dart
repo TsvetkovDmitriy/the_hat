@@ -141,6 +141,7 @@ class _PlayersPageState extends State<PlayersPage> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.transparent,
           highlightElevation: 0,
           elevation: 0,
           onPressed: () {
